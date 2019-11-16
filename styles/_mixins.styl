@@ -2,3 +2,17 @@ row(align = null)
   flex-direction: row
   if align
     align-items: align
+
+from(num)
+  condition = 'screen and (min-width: %s)' % num
+  @media condition
+    {block}
+
+to(num)
+  condition = 'screen and (max-width: %s)' % ((num - 1))
+  @media condition
+    {block}
+
+desktop()
+  +from($DESKTOP)
+    {block}

@@ -1,16 +1,45 @@
 .root
-  margin-top: 30px
+  margin-top: 20px
+
+.title
+  font-family: 'Play', sans-serif
+  font-weight: bold
+  font-size: 24px
+  color: white
+  text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5)
+  row()
+  +desktop()
+    align-self: center
+  &::before
+    content: url(https://image.flaticon.com/icons/svg/188/188918.svg)
+    width: 24px
+    height: 24px
+    margin-right: 6px
+    transform: translateY(2px)
 
 .buttons
   align-items: flex-start
   flex-wrap: wrap
+  row()
+  margin-top: 10px
+  +desktop()
+    justify-content: center
 
 .button
   padding: 5px 10px 5px 10px
-  background-color: #9F5B96
   color: white
   text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5)
-  font-family: sans-serif
+  font-family: 'Play', sans-serif
   border-radius: 5px
   font-size: 14px
   box-shadow: 1px 3px 6px -4px #000000
+  border: 1px solid transparent
+  margin-bottom: 8px
+  margin-right: 5px
+  transition: all 0.2s
+  &:hover
+    +desktop()
+      cursor: pointer
+      // opacity: 0.8
+      filter: brightness(95%)
+      border: 1px solid white
