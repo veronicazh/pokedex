@@ -9,9 +9,9 @@ export default function PoxedexMain () {
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
     .then(response => response.json() )
-    .then(pokemons => {
-      console.log(pokemons)
-      setPokemons(pokemons.results)
+    .then(apiAnswer => {
+      console.log(apiAnswer, 'apiAnswer')
+      setPokemons(apiAnswer.results)
   })
   },[])
   return pug `
