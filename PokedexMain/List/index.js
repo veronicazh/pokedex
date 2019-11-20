@@ -2,7 +2,7 @@ import React from 'react'
 import './index.styl'
 import Card from './Card'
 
-export default function List ({pokeData}) {
+export default function List ({pokeData, physical, special}) {
   // fetch('https://pokeapi.co/api/v2/pokemon/25/')
   // .then(response => response.json())
   // .then(pokemons => {
@@ -11,6 +11,6 @@ export default function List ({pokeData}) {
     div.root
       // - console.log(pokeData, 'pokeData')
       each pokemon in pokeData
-        Card(pokemon=pokemon key=pokemon.name url=pokemon.url)
+        Card(pokemon=pokemon key=pokemon.name url=pokemon.url physical=physical special=special)
   `
 }

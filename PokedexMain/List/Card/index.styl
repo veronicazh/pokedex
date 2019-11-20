@@ -1,18 +1,20 @@
 .root
   background-color: white
   border-radius: 10px
-  padding: 10px 15px 10px 15px
+  padding: 10px 15px 12px 15px
   font-family: 'Play', sans-serif
   color: #C5383A
   // margin-top: 20px
   // &:first-child
   //   margin-top: 0px
-  width: 40%
   margin-bottom: 10px
   box-shadow: 1px 3px 6px -4px #000000
   +desktop()
     width: 20%
     margin-bottom: 20px
+
+.cardBody
+  flex: 1
 
 .name
   font-weight: bold
@@ -34,3 +36,22 @@
   margin-top: 5px
   &:first-child
     margin-top: 0px
+
+.ability
+  padding-left: 12px
+  &:first-child
+    margin-top: 5px
+
+.types
+  row()
+  align-items: flex-end
+  margin-top: 15px
+
+.type
+  color: white
+  padding: 5px 10px 5px 10px
+  border-radius: 5px
+  font-size: 16px
+  text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5)
+  box-shadow: 1px 3px 6px -4px #000000
+  margin-right: 8px
