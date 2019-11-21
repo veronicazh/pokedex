@@ -109,20 +109,18 @@ export default function PoxedexMain () {
     }
   ]);
 
-
-  // let [commonArray, setCommonArray] = useState(physical.concat(special));
-
-  function handleIsActive (typeName) {
-    // setCommonArray([])
-    alert('Hello')
+  function toggleActive (array, index) {
+    array[index].isActive = !array[index].isActive
+    setPhysical(array)
+    console.log(array, 'МАССИВ')
   }
 
-
+  // let [commonArray, setCommonArray] = useState(physical.concat(special));
 
   return pug `
     div.root
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
-      TypesFilter(physical=physical special=special handleIsActive=handleIsActive)
+      TypesFilter(physical=physical special=special toggleActive=toggleActive)
       SearchBar
       List(pokeData=pokemons physical=physical special=special)
   `
