@@ -14,7 +14,7 @@ export default function PoxedexMain () {
       setPokemons(apiAnswer.results)
   })
   },[]);
-  let physical = [
+  let [physical, setPhysical] = useState([
     {
       type: 'NORMAL',
       isActive: false,
@@ -60,8 +60,8 @@ export default function PoxedexMain () {
       isActive: false,
       color: '#AAAABA'
     }
-];
-  let special = [
+]);
+  let [special, setSpecial] = useState([
     {
       type: 'FAIRY',
       isActive: false,
@@ -107,10 +107,10 @@ export default function PoxedexMain () {
       isActive: false,
       color: '#725647'
     }
-  ]
+  ]);
 
 
-  let [commonArray, setCommonArray] = useState(physical.concat(special));
+  // let [commonArray, setCommonArray] = useState(physical.concat(special));
 
   function handleIsActive (typeName) {
     // setCommonArray([])
@@ -124,6 +124,6 @@ export default function PoxedexMain () {
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
       TypesFilter(physical=physical special=special handleIsActive=handleIsActive)
       SearchBar
-      List(pokeData=pokemons physical=physical special=special commonArray=commonArray)
+      List(pokeData=pokemons physical=physical special=special)
   `
 }

@@ -12,8 +12,7 @@ export default function Card ({pokemon, url, physical, special, commonArray}) {
 
   })}, []);
   function findColor(typeName) {
-    // let commonArray = physical.concat(special);
-
+    let commonArray = physical.concat(special);
 
     for(let i = 0; i <= (currentPokemon.types || []).length - 1; i++ ) {
       for (let j = 0; j <= commonArray.length - 1; j++) {
