@@ -1,14 +1,20 @@
 import React from 'react'
 import './index.styl'
 
-export default function TypesFilter ({physical, special, toggleActive}) {
+export default function TypesFilter ({physical, special, toggleActive, activeStyles}) {
   return pug `
     div.root
       div.title
         span Physical:
       div.buttons
         each item, index in physical
-          span.button(style={backgroundColor: item.color} key=index onClick=() => toggleActive(physical, index)) #{item.type}
+          - console.log(item, 'item')
+          span.button(
+            style={backgroundColor: item.color}
+            key=index
+            onClick=() => toggleActive(physical, index)
+            styleName=item.isActive ? 'active' : ''
+          ) #{item.type}
       div.title
         span Special:
       div.buttons
