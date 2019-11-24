@@ -114,13 +114,14 @@ export default function PoxedexMain () {
   let [physical, setPhysical] = useState(PHYSICAL_DATA);
   let [special, setSpecial] = useState(SPECIAL_DATA);
 
-
-  let [activeStyles, setActiveStyles] = useState('')
-
   function toggleActive (array, index) {
     let newArray = [...array];
     newArray[index].isActive = !newArray[index].isActive
-    setPhysical(newArray)
+    if (array === physical) {
+      setPhysical(newArray)
+    } else if (array === special) {
+      setSpecial(newArray)
+    }
     // console.log(newArray, 'НОВЫЙ МАССИВ')
   }
 
@@ -129,7 +130,7 @@ export default function PoxedexMain () {
   return pug `
     div.root
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
-      TypesFilter(physical=physical special=special toggleActive=toggleActive activeStyles=activeStyles)
+      TypesFilter(physical=physical special=special toggleActive=toggleActive)
       SearchBar
       List(pokeData=pokemons physical=PHYSICAL_DATA special=SPECIAL_DATA)
   `
