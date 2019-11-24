@@ -8,9 +8,8 @@ export default function TypesFilter ({physical, special, toggleActive, activeSty
         span Physical:
       div.buttons
         each item, index in physical
-          - console.log(item, 'item')
           span.button(
-            style={backgroundColor: item.color}
+            style={backgroundColor: item.isActive ? 'white' : item.color}
             key=index
             onClick=() => toggleActive(physical, index)
             styleName=item.isActive ? 'active' : ''

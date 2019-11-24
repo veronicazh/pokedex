@@ -121,7 +121,7 @@ export default function PoxedexMain () {
     let newArray = [...array];
     newArray[index].isActive = !newArray[index].isActive
     setPhysical(newArray)
-    console.log(newArray, ' НОВЫЙ МАССИВ')
+    // console.log(newArray, 'НОВЫЙ МАССИВ')
   }
 
   // let [commonArray, setCommonArray] = useState(physical.concat(special));
