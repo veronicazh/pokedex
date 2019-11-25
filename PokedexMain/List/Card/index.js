@@ -35,9 +35,9 @@ export default function Card ({pokemon, url, physical, special, commonArray}) {
           span.item ● Weight: #{currentPokemon.weight}
           div.item ● Abilities:
             each ability in currentPokemon.abilities || []
-              span.ability - #{ability.ability.name}
+              span.ability(key=ability.ability.name) - #{ability.ability.name}
       div.types
         each item in currentPokemon.types || []
-          span.type(style={backgroundColor: findColor(item.type.name)}) #{item.type.name.toUpperCase()}
+          span.type(key=item.type.name style={backgroundColor: findColor(item.type.name)}) #{item.type.name.toUpperCase()}
   `
 }
