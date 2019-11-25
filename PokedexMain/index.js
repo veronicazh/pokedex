@@ -102,12 +102,14 @@ const SPECIAL_DATA = [
 
 export default function PoxedexMain () {
   let [pokemons, setPokemons] = useState([])
+  let [filteredPokemons, setFilteredPokemons] = useState([])
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
     .then(response => response.json() )
     .then(apiAnswer => {
       console.log(apiAnswer, 'apiAnswer')
       setPokemons(apiAnswer.results)
+      setFilteredPokemons(apiAnswer.results)
   })
   },[]);
 
@@ -132,6 +134,6 @@ export default function PoxedexMain () {
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
       TypesFilter(physical=physical special=special toggleActive=toggleActive)
       SearchBar(pokeData=pokemons)
-      List(pokeData=pokemons physical=PHYSICAL_DATA special=SPECIAL_DATA)
+      List(pokeData=filteredPokemons physical=PHYSICAL_DATA special=SPECIAL_DATA)
   `
 }

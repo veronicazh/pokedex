@@ -2,7 +2,7 @@ import React from 'react'
 import './index.styl'
 
 export default function SearchBar ({pokeData}) {
-  function dataSearch () {
+  function dataSearch (array) {
 
   }
   return pug `

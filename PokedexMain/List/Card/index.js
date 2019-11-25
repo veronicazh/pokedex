@@ -18,7 +18,7 @@ export default function Card ({pokemon, url, physical, special, commonArray}) {
       for (let j = 0; j <= commonArray.length - 1; j++) {
         if (typeName === commonArray[j].type.toLowerCase()) {
 
-          console.log(commonArray[j].color)
+          // console.log(commonArray[j].color)
           return commonArray[j].color
 
         }
