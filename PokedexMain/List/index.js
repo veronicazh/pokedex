@@ -11,6 +11,12 @@ export default React.memo(function List ({pokeData, physical, special}) {
     div.root
       // - console.log(pokeData, 'pokeData')
       each pokemon in pokeData
-        Card(pokemon=pokemon key=pokemon.name url=pokemon.url physical=physical special=special)
+        Card(
+          pokemon=pokemon
+          key=pokemon.name
+          url=pokemon.url
+          physical=physical
+          special=special
+        )
   `
 })

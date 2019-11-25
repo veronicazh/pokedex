@@ -131,7 +131,7 @@ export default function PoxedexMain () {
     div.root
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
       TypesFilter(physical=physical special=special toggleActive=toggleActive)
-      SearchBar
+      SearchBar(pokeData=pokemons)
       List(pokeData=pokemons physical=PHYSICAL_DATA special=SPECIAL_DATA)
   `
 }
