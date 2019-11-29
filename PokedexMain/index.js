@@ -102,7 +102,7 @@ const SPECIAL_DATA = [
 
 export default function PoxedexMain () {
   let [pokemons, setPokemons] = useState([])
-  let [filteredPokemons, setFilteredPokemons] = useState([])
+  let [filteredPokemons, setFilteredPokemons] = useState(pokemons)
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
     .then(response => response.json() )
@@ -127,13 +127,24 @@ export default function PoxedexMain () {
     // console.log(newArray, 'НОВЫЙ МАССИВ')
   }
 
+  function dataSearch (event) {
+    let value = event.target.value.toLowerCase()
+    console.log(value, 'VALUE')
+    let newArray = pokemons.filter((elem) => elem.name.includes(value))
+    console.log(newArray, 'NEWARRAY')
+    setFilteredPokemons(newArray)
+    if (value === '') {
+      setFilteredPokemons(pokemons)
+    }
+  }
+
   // let [commonArray, setCommonArray] = useState(physical.concat(special));
 
   return pug `
     div.root
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
       TypesFilter(physical=physical special=special toggleActive=toggleActive)
-      SearchBar(pokeData=pokemons setFilteredPokemons=setFilteredPokemons)
+      SearchBar(dataSearch=dataSearch)
       List(pokeData=filteredPokemons physical=PHYSICAL_DATA special=SPECIAL_DATA)
   `
 }
