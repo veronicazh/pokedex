@@ -138,12 +138,19 @@ export default function PoxedexMain () {
     }
   }
 
+  function typeFilter (currentItem) {
+    if (currentItem.isActive) {
+      let filteredTypes = pokemons.filter((elem) => currentItem.type.toLowerCase() === elem.name)
+      console.log(filteredPokemons, 'FILTERED POKOMONS')
+    }
+  }
+
   // let [commonArray, setCommonArray] = useState(physical.concat(special));
 
   return pug `
     div.root
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
-      TypesFilter(physical=physical special=special toggleActive=toggleActive)
+      TypesFilter(physical=physical special=special toggleActive=toggleActive typeFilter=typeFilter)
       SearchBar(dataSearch=dataSearch)
       List(pokeData=filteredPokemons physical=PHYSICAL_DATA special=SPECIAL_DATA)
   `
