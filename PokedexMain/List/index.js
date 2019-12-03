@@ -9,7 +9,7 @@ export default React.memo(function List ({pokeData, physical, special}) {
   //   console.log(pokemons, 'pokemon') })
   return pug `
     div.root
-      // - console.log(pokeData, 'pokeData')
+      - console.log(pokeData, 'pokeData LIST')
       each pokemon in pokeData
         Card(
           pokemon=pokemon

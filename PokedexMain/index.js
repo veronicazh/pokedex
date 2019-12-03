@@ -105,11 +105,22 @@ export default function PoxedexMain () {
   let [filteredPokemons, setFilteredPokemons] = useState(pokemons)
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
-    .then(response => response.json() )
+    .then(response => response.json())
     .then(apiAnswer => {
       console.log(apiAnswer, 'apiAnswer')
-      setPokemons(apiAnswer.results)
-      setFilteredPokemons(apiAnswer.results)
+      let pokeResults = apiAnswer.results
+      console.log(pokeResults, 'pokeResults')
+      let promiseArray = pokeResults.map((elem) => {
+        return fetch(elem.url).then(response => response.json())
+      })
+      console.log(promiseArray, 'promiseArray!')
+      let pokemonArray = Promise.all(promiseArray).then(() => {
+        console.log(pokemonArray, 'массив покемонов')
+        setPokemons(pokemonArray)
+        setFilteredPokemons(pokemonArray)
+      })
+
+      // setPokemons(apiAnswer.results)
   })
   },[]);
 
@@ -141,7 +152,7 @@ export default function PoxedexMain () {
   function typeFilter (currentItem) {
     if (currentItem.isActive) {
       let filteredTypes = pokemons.filter((elem) => currentItem.type.toLowerCase() === elem.name)
-      console.log(filteredPokemons, 'FILTERED POKOMONS')
+      console.log(filteredPokemons, 'FILTERED POKEMONS')
     }
   }
 
