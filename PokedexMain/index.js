@@ -147,8 +147,20 @@ export default function PoxedexMain () {
 
   function typeFilter (currentItem) {
     if (currentItem.isActive) {
-      let filteredTypes = pokemons.filter((elem) => currentItem.type.toLowerCase() === elem.name)
-      console.log(filteredPokemons, 'FILTERED POKEMONS')
+      console.log('FUNCTION WORKS')
+      console.log(pokemons, 'POKEMONCHIKI')
+      console.log(currentItem.type, 'TYPE')
+      let filteredByTypePokemons = pokemons.filter((elem) => {
+        // console.log('ELEM')
+        for(let i = 0; i < elem.types.length; i++) {
+          console.log('FOR WORKS')
+          if (elem.types[i].type.name === currentItem.type.toLowerCase()) {
+            return true
+          }
+        }
+      })
+      console.log(filteredByTypePokemons, 'FILTERED')
+      setFilteredPokemons(filteredByTypePokemons)
     }
   }
 
