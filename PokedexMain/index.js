@@ -106,20 +106,16 @@ export default function PoxedexMain () {
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
     .then(response => response.json())
-    .then(apiAnswer => {
+    .then(async apiAnswer => {
       console.log(apiAnswer, 'apiAnswer')
       let pokeResults = apiAnswer.results
       console.log(pokeResults, 'pokeResults')
-      let promiseArray = pokeResults.map((elem) => {
-        return fetch(elem.url).then(response => response.json())
-      })
+      let promiseArray = pokeResults.map(async elem => (await fetch(elem.url)).json())
       console.log(promiseArray, 'promiseArray!')
-      let pokemonArray = Promise.all(promiseArray).then(() => {
-        console.log(pokemonArray, 'массив покемонов')
-        setPokemons(pokemonArray)
-        setFilteredPokemons(pokemonArray)
-      })
-
+      let pokemonArray = await Promise.all(promiseArray)
+      console.log(pokemonArray, 'массив покемонов')
+      setPokemons(pokemonArray)
+      setFilteredPokemons(pokemonArray)
       // setPokemons(apiAnswer.results)
   })
   },[]);

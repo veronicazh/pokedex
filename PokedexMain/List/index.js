@@ -14,7 +14,6 @@ export default React.memo(function List ({pokeData, physical, special}) {
         Card(
           pokemon=pokemon
           key=pokemon.name
-          url=pokemon.url
           physical=physical
           special=special
         )
