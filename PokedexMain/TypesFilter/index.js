@@ -4,7 +4,7 @@ import './index.styl'
 export default function TypesFilter ({physical, special, toggleActive, typeFilter}) {
   function onTypeClick(array, index, item) {
     toggleActive(array, index);
-    typeFilter(item)
+    typeFilter(item, array)
   }
   return pug `
     div.root

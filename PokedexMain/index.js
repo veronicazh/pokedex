@@ -137,7 +137,7 @@ export default function PoxedexMain () {
   function dataSearch (event) {
     let value = event.target.value.toLowerCase()
     console.log(value, 'VALUE')
-    let newArray = pokemons.filter((elem) => elem.name.includes(value))
+    let newArray = filteredPokemons.filter((elem) => elem.name.includes(value))
     console.log(newArray, 'NEWARRAY')
     setFilteredPokemons(newArray)
     if (value === '') {
@@ -145,23 +145,37 @@ export default function PoxedexMain () {
     }
   }
 
-  function typeFilter (currentItem) {
-    if (currentItem.isActive) {
+  function typeFilter (currentItem, array) {
+    let isActiveTrueArray = array.filter((elem) => {
+      if (elem.isActive) {
+        return true
+      }
+    })
+    console.log(isActiveTrueArray, 'arrayACTIVE')
+    // if (currentItem.isActive) {
       console.log('FUNCTION WORKS')
       console.log(pokemons, 'POKEMONCHIKI')
       console.log(currentItem.type, 'TYPE')
+      // let commonArray = []
       let filteredByTypePokemons = pokemons.filter((elem) => {
         // console.log('ELEM')
         for(let i = 0; i < elem.types.length; i++) {
           console.log('FOR WORKS')
-          if (elem.types[i].type.name === currentItem.type.toLowerCase()) {
-            return true
+          for(let j = 0; j < isActiveTrueArray.length; j++) {
+            console.log(isActiveTrueArray[j].type.toLowerCase(), 'TYPE')
+            if (elem.types[i].type.name === isActiveTrueArray[j].type.toLowerCase()) {
+              return true
+            }
           }
         }
       })
       console.log(filteredByTypePokemons, 'FILTERED')
       setFilteredPokemons(filteredByTypePokemons)
-    }
+    // }
+  }
+
+  function updateFilteredPokemons () {
+
   }
 
   // let [commonArray, setCommonArray] = useState(physical.concat(special));
