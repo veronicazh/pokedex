@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './index.styl'
 
-export default function Card ({pokemon, physical, special}) {
+export default function Card ({pokemon, types}) {
   // let [currentPokemon, setCurrentPokemon] = useState({})
   // useEffect(() => {
   //   fetch(url)
@@ -12,14 +12,13 @@ export default function Card ({pokemon, physical, special}) {
 
   // })}, []);
   function findColor(typeName) {
-    let commonArray = physical.concat(special);
 
     for(let i = 0; i <= (pokemon.types || []).length - 1; i++ ) {
-      for (let j = 0; j <= commonArray.length - 1; j++) {
-        if (typeName === commonArray[j].type.toLowerCase()) {
+      for (let j = 0; j <= types.length - 1; j++) {
+        if (typeName === types[j].type.toLowerCase()) {
 
           // console.log(commonArray[j].color)
-          return commonArray[j].color
+          return types[j].color
 
         }
       }

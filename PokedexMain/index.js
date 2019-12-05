@@ -221,12 +221,9 @@ export default function PoxedexMain () {
   function toggleActive (array, index) {
     let newArray = [...array];
     newArray[index].isActive = !newArray[index].isActive
-    if (array === physical) {
-      setPhysical(newArray)
-    } else if (array === special) {
-      setSpecial(newArray)
-    }
-    // console.log(newArray, 'НОВЫЙ МАССИВ')
+    setTypes(newArray)
+
+    console.log(newArray, 'НОВЫЙ МАССИВ')
   }
 
   function dataSearch (event) {
@@ -269,16 +266,32 @@ export default function PoxedexMain () {
     // }
   }
 
-  function updateFilteredPokemons (array, inputValue) {
-    let isActiveTrueArray = array.filter((elem) => {
-      if (elem.isActive) {
-        return true
-      }
-    })
+  function updateFilteredPokemons () {
+
     setFilteredPokemons(pokemons.filter((elem) => {
 
       let nameMatches = false
-      if (elem.name.toLowerCase().includes){}
+      if (elem.name.toLowerCase().includes(search.toLowerCase())) {
+        nameMatches = true
+      }
+
+      let typeMatches = false
+
+      let isActiveTrueArray = types.filter((elem) => {
+        if (elem.isActive) {
+          return true
+        }
+      })
+
+      for (let pokemonType of elem.types)
+        for (let selectedType of isActiveTrueArray)
+          if (pokemonType === selectedType) {
+            typeMatches = true
+          }
+
+      if (nameMatches && typeMatches) {
+        return true
+      }
     }))
   }
 
@@ -289,6 +302,6 @@ export default function PoxedexMain () {
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
       TypesFilter(types=types toggleActive=toggleActive typeFilter=typeFilter)
       SearchBar(dataSearch=dataSearch updateFilteredPokemons=updateFilteredPokemons search=search setSearch=setSearch)
-      List(pokeData=filteredPokemons physical=PHYSICAL_DATA special=SPECIAL_DATA)
+      List(pokeData=filteredPokemons types=types)
   `
 }
