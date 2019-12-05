@@ -3,6 +3,8 @@
   margin-top: 15px
   +desktop()
     margin-top: 30px
+    row()
+    justify-content: center
 
 .search
   background-image: url(https://image.flaticon.com/icons/svg/122/122932.svg)
@@ -25,3 +27,19 @@
   +desktop()
     align-self: center
     width: auto
+
+.button
+  color: #C5383A
+  background-color: white
+  border-radius: 5px
+  font-family: 'Play', sans-serif
+  margin-top: 15px
+  padding: 5px 8px 5px 8px
+  font-size: 20px
+  box-shadow: 1px 3px 6px -4px #000000
+  +desktop()
+    font-size: 26px
+    margin-left: 10px
+    margin-top: 0px
+  &:hover
+    cursor: pointer

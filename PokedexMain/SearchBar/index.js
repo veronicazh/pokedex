@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.styl'
 
-export default function SearchBar ({dataSearch}) {
+export default function SearchBar ({dataSearch, updateFilteredPokemons}) {
   // function dataSearch (event) {
   //   let value = event.target.value.toLowerCase()
   //   console.log(value, 'VALUE')
@@ -20,5 +20,6 @@ export default function SearchBar ({dataSearch}) {
         onBlur=(e) => e.target.placeholder = 'Search...'
         onChange=dataSearch
       )
+      span.button(onClick=updateFilteredPokemons) Search
   `
 }

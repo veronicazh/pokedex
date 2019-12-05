@@ -174,8 +174,17 @@ export default function PoxedexMain () {
     // }
   }
 
-  function updateFilteredPokemons () {
+  function updateFilteredPokemons (array, inputValue) {
+    let isActiveTrueArray = array.filter((elem) => {
+      if (elem.isActive) {
+        return true
+      }
+    })
+    setFilteredPokemons(pokemons.filter((elem) => {
 
+      let nameMatches = false
+
+    }))
   }
 
   // let [commonArray, setCommonArray] = useState(physical.concat(special));
@@ -184,7 +193,7 @@ export default function PoxedexMain () {
     div.root
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
       TypesFilter(physical=physical special=special toggleActive=toggleActive typeFilter=typeFilter)
-      SearchBar(dataSearch=dataSearch)
+      SearchBar(dataSearch=dataSearch updateFilteredPokemons=updateFilteredPokemons)
       List(pokeData=filteredPokemons physical=PHYSICAL_DATA special=SPECIAL_DATA)
   `
 }
