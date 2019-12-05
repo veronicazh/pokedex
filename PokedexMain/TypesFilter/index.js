@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.styl'
 
-export default function TypesFilter ({physical, special, toggleActive, typeFilter}) {
+export default function TypesFilter ({types, toggleActive, typeFilter}) {
   function onTypeClick(array, index, item) {
     toggleActive(array, index);
     typeFilter(item, array)
@@ -9,24 +9,24 @@ export default function TypesFilter ({physical, special, toggleActive, typeFilte
   return pug `
     div.root
       div.title
-        span Physical:
+        span Choose your type:
       div.buttons
-        each item, index in physical
+        each item, index in types
           span.button(
             style={backgroundColor: item.isActive ? 'white' : item.color}
             key=index
-            onClick=() => onTypeClick(physical, index, item)
+            onClick=() => onTypeClick(types, index, item)
             styleName=item.isActive ? 'active' : ''
           ) #{item.type}
-      div.title
-        span Special:
-      div.buttons
-        each item, index in special
-          span.button(
-            style={backgroundColor: item.isActive ? 'white' : item.color}
-            key=index
-            onClick=() => toggleActive(special, index)
-            styleName=item.isActive ? 'active' : ''
-          ) #{item.type}
+      // div.title
+      //   span Special:
+      // div.buttons
+      //   each item, index in special
+      //     span.button(
+      //       style={backgroundColor: item.isActive ? 'white' : item.color}
+      //       key=index
+      //       onClick=() => toggleActive(special, index)
+      //       styleName=item.isActive ? 'active' : ''
+      //     ) #{item.type}
 `
 }
