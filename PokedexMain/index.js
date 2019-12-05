@@ -194,8 +194,10 @@ const SPECIAL_DATA = [
 ]
 
 export default function PoxedexMain () {
+
   let [pokemons, setPokemons] = useState([])
   let [filteredPokemons, setFilteredPokemons] = useState(pokemons)
+
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
     .then(response => response.json())
@@ -218,59 +220,60 @@ export default function PoxedexMain () {
   let [types, setTypes] = useState(TYPES_DATA)
   let [search, setSearch] = useState('')
 
-  function toggleActive (array, index) {
-    let newArray = [...array];
+  function toggleActive (index) {
+    let newArray = [...types];
     newArray[index].isActive = !newArray[index].isActive
     setTypes(newArray)
 
     console.log(newArray, 'НОВЫЙ МАССИВ')
   }
 
-  function dataSearch (event) {
-    let value = event.target.value.toLowerCase()
-    console.log(value, 'VALUE')
-    let newArray = filteredPokemons.filter((elem) => elem.name.includes(value))
-    console.log(newArray, 'NEWARRAY')
-    setFilteredPokemons(newArray)
-    if (value === '') {
-      setFilteredPokemons(pokemons)
-    }
-  }
+  // function dataSearch (event) {
+  //   let value = event.target.value.toLowerCase()
+  //   console.log(value, 'VALUE')
+  //   let newArray = filteredPokemons.filter((elem) => elem.name.includes(value))
+  //   console.log(newArray, 'NEWARRAY')
+  //   setFilteredPokemons(newArray)
+  //   if (value === '') {
+  //     setFilteredPokemons(pokemons)
+  //   }
+  // }
 
-  function typeFilter (currentItem, array) {
-    let isActiveTrueArray = array.filter((elem) => {
-      if (elem.isActive) {
-        return true
-      }
-    })
-    console.log(isActiveTrueArray, 'arrayACTIVE')
-    // if (currentItem.isActive) {
-      console.log('FUNCTION WORKS')
-      console.log(pokemons, 'POKEMONCHIKI')
-      console.log(currentItem.type, 'TYPE')
-      // let commonArray = []
-      let filteredByTypePokemons = pokemons.filter((elem) => {
-        // console.log('ELEM')
-        for(let i = 0; i < elem.types.length; i++) {
-          console.log('FOR WORKS')
-          for(let j = 0; j < isActiveTrueArray.length; j++) {
-            console.log(isActiveTrueArray[j].type.toLowerCase(), 'TYPE')
-            if (elem.types[i].type.name === isActiveTrueArray[j].type.toLowerCase()) {
-              return true
-            }
-          }
-        }
-      })
-      console.log(filteredByTypePokemons, 'FILTERED')
-      setFilteredPokemons(filteredByTypePokemons)
-    // }
-  }
+  // function typeFilter (currentItem, array) {
+  //   let isActiveTrueArray = array.filter((elem) => {
+  //     if (elem.isActive) {
+  //       return true
+  //     }
+  //   })
+  //   console.log(isActiveTrueArray, 'arrayACTIVE')
+  //   // if (currentItem.isActive) {
+  //     console.log('FUNCTION WORKS')
+  //     console.log(pokemons, 'POKEMONCHIKI')
+  //     console.log(currentItem.type, 'TYPE')
+  //     // let commonArray = []
+  //     let filteredByTypePokemons = pokemons.filter((elem) => {
+  //       // console.log('ELEM')
+  //       for(let i = 0; i < elem.types.length; i++) {
+  //         console.log('FOR WORKS')
+  //         for(let j = 0; j < isActiveTrueArray.length; j++) {
+  //           console.log(isActiveTrueArray[j].type.toLowerCase(), 'TYPE')
+  //           if (elem.types[i].type.name === isActiveTrueArray[j].type.toLowerCase()) {
+  //             return true
+  //           }
+  //         }
+  //       }
+  //     })
+  //     console.log(filteredByTypePokemons, 'FILTERED')
+  //     setFilteredPokemons(filteredByTypePokemons)
+  //   // }
+  // }
 
   function updateFilteredPokemons () {
 
     setFilteredPokemons(pokemons.filter((elem) => {
 
       let nameMatches = false
+
       if (elem.name.toLowerCase().includes(search.toLowerCase())) {
         nameMatches = true
       }
@@ -289,10 +292,16 @@ export default function PoxedexMain () {
             typeMatches = true
           }
 
+      console.log(nameMatches, typeMatches, 'USOTIHUONTIHSNTUEH')
+
+
       if (nameMatches && typeMatches) {
         return true
+      } else {
+        return false
       }
     }))
+
   }
 
   // let [commonArray, setCommonArray] = useState(physical.concat(special));
@@ -300,8 +309,8 @@ export default function PoxedexMain () {
   return pug `
     div.root
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
-      TypesFilter(types=types toggleActive=toggleActive typeFilter=typeFilter)
-      SearchBar(dataSearch=dataSearch updateFilteredPokemons=updateFilteredPokemons search=search setSearch=setSearch)
+      TypesFilter(types=types toggleActive=toggleActive)
+      SearchBar(updateFilteredPokemons=updateFilteredPokemons search=search setSearch=setSearch)
       List(pokeData=filteredPokemons types=types)
   `
 }

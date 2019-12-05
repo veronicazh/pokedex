@@ -15,7 +15,7 @@ export default function TypesFilter ({types, toggleActive, typeFilter}) {
           span.button(
             style={backgroundColor: item.isActive ? 'white' : item.color}
             key=index
-            onClick=() => toggleActive(types, index)
+            onClick=() => toggleActive(index)
             styleName=item.isActive ? 'active' : ''
           ) #{item.type}
       // div.title
