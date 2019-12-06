@@ -197,6 +197,8 @@ export default function PoxedexMain () {
 
   let [pokemons, setPokemons] = useState([])
   let [filteredPokemons, setFilteredPokemons] = useState(pokemons)
+  let [itemsPerPage, setItemsPerPage] = useState(20)
+  let [currentPage, setCurrentPage] = useState(0)
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
@@ -298,16 +300,17 @@ export default function PoxedexMain () {
       console.log(nameMatches, 'NAME_MATCHES')
       console.log(typeMatches, 'TYPE_MATCHES')
 
-
+      console.log(types, 'types')
       let hasSelectedType = false
-      for (let type in types) {
+      for (let type of types) {
+        console.log(type, 'type')
         if (type.isActive) {
           hasSelectedType = true
         }
       }
 
 
-      if ((!hasSelectedType || typeMatches) && nameMatches) {
+      if (( !hasSelectedType || typeMatches ) && nameMatches) {
         return true
       } else {
         return false
@@ -323,8 +326,18 @@ export default function PoxedexMain () {
   return pug `
     div.root
       img.mainTitle(src='https://fontmeme.com/permalink/191115/c9fa65f819a2a9326a14012c39ab3f7d.png')
-      TypesFilter(types=types toggleActive=toggleActive)
-      SearchBar(updateFilteredPokemons=updateFilteredPokemons search=search setSearch=setSearch)
-      List(pokeData=filteredPokemons types=types)
+      TypesFilter(
+        types=types
+        toggleActive=toggleActive
+      )
+      SearchBar(
+        updateFilteredPokemons=updateFilteredPokemons
+        search=search
+        setSearch=setSearch
+      )
+      List(
+        pokeData=filteredPokemons
+        types=types
+      )
   `
 }
