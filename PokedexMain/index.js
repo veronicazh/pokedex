@@ -273,27 +273,33 @@ export default function PoxedexMain () {
     setFilteredPokemons(pokemons.filter((elem) => {
 
       let nameMatches = false
-
       if (elem.name.toLowerCase().includes(search.toLowerCase())) {
         nameMatches = true
       }
 
       let typeMatches = false
-
       let isActiveTrueArray = types.filter((elem) => {
         if (elem.isActive) {
           return true
         }
       })
-
-      for (let pokemonType of elem.types)
-        for (let selectedType of isActiveTrueArray)
-          if (pokemonType === selectedType) {
+      console.log(isActiveTrueArray, 'activeArray')
+      for (let pokemonType of elem.types) {
+        console.log(pokemonType, 'PokemonType')
+        for (let selectedType of isActiveTrueArray) {
+          console.log(selectedType, 'selectedType')
+          if (pokemonType.type.name === selectedType.type.toLowerCase()) {
             typeMatches = true
           }
+        }
+      }
 
-      console.log(nameMatches, typeMatches, 'USOTIHUONTIHSNTUEH')
 
+      console.log(nameMatches, 'NAME_MATCHES')
+      console.log(typeMatches, 'TYPE_MATCHES')
+
+
+      // let hasTypeSelected = false
 
       if (nameMatches && typeMatches) {
         return true
@@ -303,6 +309,8 @@ export default function PoxedexMain () {
     }))
 
   }
+  console.log(filteredPokemons, 'FILTEREDFUCKINGPOKEMONS')
+
 
   // let [commonArray, setCommonArray] = useState(physical.concat(special));
 
