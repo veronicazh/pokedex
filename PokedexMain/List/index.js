@@ -10,6 +10,7 @@ export default React.memo(function List ({pokeData, types, animated}) {
       div.pagination
         span.pageButton 14
       div.container
+        - console.log(animated, 'animated')
         each pokemon in pokeData
           Card(
             pokemon=pokemon

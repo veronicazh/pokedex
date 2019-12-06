@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.styl'
 
-export default function SearchBar ({dataSearch, updateFilteredPokemons, search, setSearch, toggleAnimated}) {
+export default function SearchBar ({dataSearch, updateFilteredPokemons, search, setSearch, animated, toggleAnimated}) {
 
   function onInputChange (event) {
     let newValue = event.target.value
@@ -20,8 +20,8 @@ export default function SearchBar ({dataSearch, updateFilteredPokemons, search, 
         span.button(onClick=updateFilteredPokemons) Search
       div.switchContainer
         span.animated Animated
-        label.switch(onFocus=toggleAnimated)
-          input(type='checkbox')
+        label.switch
+          input(type='checkbox' onChange=toggleAnimated value=animated)
           span.slider.round
 
   `

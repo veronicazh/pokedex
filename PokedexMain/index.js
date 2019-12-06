@@ -233,7 +233,6 @@ export default function PoxedexMain () {
 
   function toggleAnimated () {
     setAnimated(!animated)
-    console.log(animated, 'animated')
   }
 
   // function dataSearch (event) {
@@ -340,6 +339,7 @@ export default function PoxedexMain () {
         updateFilteredPokemons=updateFilteredPokemons
         search=search
         setSearch=setSearch
+        animated=animated
         toggleAnimated=toggleAnimated
       )
       List(
