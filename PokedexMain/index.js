@@ -299,9 +299,15 @@ export default function PoxedexMain () {
       console.log(typeMatches, 'TYPE_MATCHES')
 
 
-      // let hasTypeSelected = false
+      let hasSelectedType = false
+      for (let type in types) {
+        if (type.isActive) {
+          hasSelectedType = true
+        }
+      }
 
-      if (nameMatches && typeMatches) {
+
+      if ((!hasSelectedType || typeMatches) && nameMatches) {
         return true
       } else {
         return false
