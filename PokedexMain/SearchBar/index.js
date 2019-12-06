@@ -19,7 +19,7 @@ export default function SearchBar ({dataSearch, updateFilteredPokemons, search, 
         )
         span.button(onClick=updateFilteredPokemons) Search
       div.switchContainer
-        span.animated Animated
+        span.animated Animate!
         label.switch
           input(type='checkbox' onChange=toggleAnimated value=animated)
           span.slider.round
