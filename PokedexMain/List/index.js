@@ -2,7 +2,7 @@ import React from 'react'
 import './index.styl'
 import Card from './Card'
 
-export default React.memo(function List ({pokeData, types}) {
+export default React.memo(function List ({pokeData, types, animated}) {
 
   return pug `
     div.root
@@ -15,6 +15,7 @@ export default React.memo(function List ({pokeData, types}) {
             pokemon=pokemon
             key=pokemon.name
             types=types
+            animated=animated
           )
   `
 })

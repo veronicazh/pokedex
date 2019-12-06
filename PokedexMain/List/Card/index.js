@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import './index.styl'
 
-export default function Card ({pokemon, types}) {
+export default function Card ({pokemon, types, animated}) {
   // let [currentPokemon, setCurrentPokemon] = useState({})
   // useEffect(() => {
   //   fetch(url)
@@ -28,7 +28,8 @@ export default function Card ({pokemon, types}) {
     div.root
       div.cardBody
         span.name #{pokemon.name.toUpperCase()}
-        img.image(src='https://img.pokemondb.net/artwork/' + pokemon.name + '.jpg')
+        // img.image(src='https://img.pokemondb.net/artwork/' + pokemon.name + '.jpg')
+        img.image(referrerPolicy='no-referrer' src=animated ? 'https://randompokemon.com/sprites/normal/' + pokemon.id +'.gif' : 'https://img.pokemondb.net/artwork/' + pokemon.name + '.jpg')
         div.pokemonInfo
           span.item ● Height: #{pokemon.height}
           span.item ● Weight: #{pokemon.weight}

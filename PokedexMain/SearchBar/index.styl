@@ -2,9 +2,14 @@
   align-items: flex-start
   margin-top: 15px
   +desktop()
-    margin-top: 30px
+    margin-top: 25px
+    align-items: center
+
+
+.container
+  align-items: flex-start
+  +desktop()
     row()
-    justify-content: center
 
 .search
   background-image: url(https://image.flaticon.com/icons/svg/122/122932.svg)
@@ -43,3 +48,73 @@
     margin-top: 0px
   &:hover
     cursor: pointer
+
+.switchContainer
+  row()
+  margin-top: 20px
+  align-items: center
+
+.animated
+  color: white
+  font-family: 'Play', sans-serif
+  font-size: 20px
+  text-shadow: -1px -1px 1px rgba(255,255,255,0.1), 1px 1px 1px rgba(0,0,0,0.5)
+  font-weight: bold
+
+// switch
+.switch
+  position: relative
+  display: inline-block
+  width: 46px
+  height: 26px
+  margin-left: 10px
+
+.switch input
+  opacity: 0
+  width: 0
+  height: 0
+
+.slider
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: #ccc
+  -webkit-transition: .4s
+  transition: .4s
+
+.slider:before
+  position: absolute
+  content: ""
+  height: 18px
+  width: 18px
+  left: 4px
+  bottom: 4px
+  background-color: white
+  -webkit-transition: .4s
+  transition: .4s
+
+input:checked + .slider
+  background-color: #416BB7
+
+input:checked + .slider:before
+  background-color: #F8CE46
+
+
+input:focus + .slider
+  box-shadow: 0 0 1px #416BB7
+
+
+input:checked + .slider:before
+  transform: translateX(20px)
+
+
+/* Rounded sliders */
+.slider.round
+  border-radius: 34px
+
+
+.slider.round:before
+  border-radius: 50%

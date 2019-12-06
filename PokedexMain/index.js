@@ -197,6 +197,7 @@ export default function PoxedexMain () {
 
   let [pokemons, setPokemons] = useState([])
   let [filteredPokemons, setFilteredPokemons] = useState(pokemons)
+  let [animated, setAnimated] = useState(false)
   let [itemsPerPage, setItemsPerPage] = useState(20)
   let [currentPage, setCurrentPage] = useState(0)
 
@@ -228,6 +229,11 @@ export default function PoxedexMain () {
     setTypes(newArray)
 
     console.log(newArray, 'НОВЫЙ МАССИВ')
+  }
+
+  function toggleAnimated () {
+    setAnimated(!animated)
+    console.log(animated, 'animated')
   }
 
   // function dataSearch (event) {
@@ -334,10 +340,12 @@ export default function PoxedexMain () {
         updateFilteredPokemons=updateFilteredPokemons
         search=search
         setSearch=setSearch
+        toggleAnimated=toggleAnimated
       )
       List(
         pokeData=filteredPokemons
         types=types
+        animated=animated
       )
   `
 }
