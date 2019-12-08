@@ -275,6 +275,16 @@ export default function PoxedexMain () {
   //   // }
   // }
 
+  function findStart () {
+    let start = currentPage * itemsPerPage
+    return start
+  }
+
+  function findEnd () {
+    let end = (currentPage * itemsPerPage) + 2
+    return end
+  }
+
   function updateFilteredPokemons () {
 
     setFilteredPokemons(pokemons.filter((elem) => {
