@@ -3,6 +3,8 @@ import './index.styl'
 import TypesFilter from './TypesFilter'
 import SearchBar from './SearchBar'
 import List from './List'
+import Pagination from './Pagination'
+
 
 const TYPES_DATA = [
   {
@@ -50,102 +52,6 @@ const TYPES_DATA = [
     isActive: false,
     color: '#AAAABA'
   },
-  {
-    type: 'FAIRY',
-    isActive: false,
-    color: '#E29FE9'
-  },
-  {
-    type: 'FIRE',
-    isActive: false,
-    color: '#EC5435'
-  },
-  {
-    type: 'WATER',
-    isActive: false,
-    color: '#4F9AF8'
-  },
-  {
-    type: 'GRASS',
-    isActive: false,
-    color: '#4F9AF8'
-  },
-  {
-    type: 'ELECTRIC',
-    isActive: false,
-    color: '#F8CD55'
-  },
-  {
-    type: 'PSYCHIC',
-    isActive: false,
-    color: '#ED6398'
-  },
-  {
-    type: 'ICE',
-    isActive: false,
-    color: '#7FCBFA'
-  },
-  {
-    type: 'DRAGON',
-    isActive: false,
-    color: '#736BE6'
-  },
-  {
-    type: 'DARK',
-    isActive: false,
-    color: '#725647'
-  }
-]
-
-const PHYSICAL_DATA = [
-  {
-    type: 'NORMAL',
-    isActive: false,
-    color: '#AAAA9B'
-  },
-  {
-    type: 'FIGHTING',
-    isActive: false,
-    color: '#AF5B4A'
-  },
-  {
-    type: 'FLYING',
-    isActive: false,
-    color: '#8A9BF8'
-  },
-  {
-    type: 'POISON',
-    isActive: false,
-    color: '#9F5B96'
-  },
-  {
-    type: 'GROUND',
-    isActive: false,
-    color: '#D8BB66'
-  },
-  {
-    type: 'ROCK',
-    isActive: false,
-    color: '#B9AA6F'
-  },
-  {
-    type: 'BUG',
-    isActive: false,
-    color: '#AEB944'
-  },
-  {
-    type: 'GHOST',
-    isActive: false,
-    color: '#6568B6'
-  },
-  {
-    type: 'STEEL',
-    isActive: false,
-    color: '#AAAABA'
-  }
-]
-
-const SPECIAL_DATA = [
   {
     type: 'FAIRY',
     isActive: false,
@@ -275,19 +181,19 @@ export default function PoxedexMain () {
   //   // }
   // }
 
-  function findStart () {
-    let start = currentPage * itemsPerPage
-    return start
-  }
+  // function findStart () {
+  //   let start = currentPage * itemsPerPage
+  //   return start
+  // }
 
-  function findEnd () {
-    let end = (currentPage * itemsPerPage) + 2
-    return end
-  }
+  // function findEnd () {
+  //   let end = (currentPage * itemsPerPage) + 2
+  //   return end
+  // }
 
-  function updateFilteredPokemons () {
+  function updateFilteredPokemons (pageClicked = 0) {
 
-    setFilteredPokemons(pokemons.filter((elem) => {
+    let newArray = pokemons.filter((elem) => {
 
       let nameMatches = false
       if (elem.name.toLowerCase().includes(search.toLowerCase())) {
@@ -311,7 +217,6 @@ export default function PoxedexMain () {
         }
       }
 
-
       console.log(nameMatches, 'NAME_MATCHES')
       console.log(typeMatches, 'TYPE_MATCHES')
 
@@ -324,19 +229,19 @@ export default function PoxedexMain () {
         }
       }
 
-
       if (( !hasSelectedType || typeMatches ) && nameMatches) {
         return true
       } else {
         return false
       }
-    }))
+    })
+
+    setFilteredPokemons(newArray)
 
   }
   console.log(filteredPokemons, 'FILTEREDFUCKINGPOKEMONS')
 
-
-  // let [commonArray, setCommonArray] = useState(physical.concat(special));
+  let filteredPokemonsLength = filteredPokemons.length //длина массива фильтред покемонс
 
   return pug `
     div.root
@@ -351,6 +256,11 @@ export default function PoxedexMain () {
         setSearch=setSearch
         animated=animated
         toggleAnimated=toggleAnimated
+      )
+      Pagination(
+        filteredPokemonsLength=filteredPokemonsLength
+        itemsPerPage=itemsPerPage
+        updateFilteredPokemons=updateFilteredPokemons
       )
       List(
         pokeData=filteredPokemons
