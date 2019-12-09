@@ -106,6 +106,9 @@ export default function PoxedexMain () {
   let [animated, setAnimated] = useState(false)
   let [itemsPerPage, setItemsPerPage] = useState(20)
   let [currentPage, setCurrentPage] = useState(0)
+  let [pagesAmount, setPagesAmount] = useState(Math.ceil((filteredPokemons.length + 2) / itemsPerPage))
+
+  console.log(pagesAmount, 'pagesAmount DEFAULT')
 
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
@@ -181,15 +184,13 @@ export default function PoxedexMain () {
   //   // }
   // }
 
-  // function findStart () {
-  //   let start = currentPage * itemsPerPage
-  //   return start
-  // }
+  function findStart (currentPage) {
+    return currentPage * itemsPerPage
+  }
 
-  // function findEnd () {
-  //   let end = (currentPage * itemsPerPage) + 2
-  //   return end
-  // }
+  function findEnd (currentPage) {
+    return (currentPage * itemsPerPage) + (itemsPerPage - 1)
+  }
 
   function updateFilteredPokemons (pageClicked = 0) {
 
@@ -221,6 +222,7 @@ export default function PoxedexMain () {
       console.log(typeMatches, 'TYPE_MATCHES')
 
       console.log(types, 'types')
+
       let hasSelectedType = false
       for (let type of types) {
         console.log(type, 'type')
@@ -234,14 +236,27 @@ export default function PoxedexMain () {
       } else {
         return false
       }
-    })
 
-    setFilteredPokemons(newArray)
+    })
+    console.log(pageClicked, 'pageClicked')
+
+    let slicedArray = newArray.slice(findStart(pageClicked), (findEnd(pageClicked)) + 1)
+
+    console.log('START', findStart(pageClicked))
+
+    console.log('END', findEnd(pageClicked))
+
+    setPagesAmount(Math.ceil((filteredPokemons.length + 2) / itemsPerPage))
+
+    setFilteredPokemons(slicedArray)
+
+    setCurrentPage(pageClicked)
+
 
   }
   console.log(filteredPokemons, 'FILTEREDFUCKINGPOKEMONS')
 
-  let filteredPokemonsLength = filteredPokemons.length //длина массива фильтред покемонс
+  // let filteredPokemonsLength = filteredPokemons.length //длина массива фильтред покемонс
 
   return pug `
     div.root
@@ -258,9 +273,9 @@ export default function PoxedexMain () {
         toggleAnimated=toggleAnimated
       )
       Pagination(
-        filteredPokemonsLength=filteredPokemonsLength
         itemsPerPage=itemsPerPage
         updateFilteredPokemons=updateFilteredPokemons
+        pagesAmount=pagesAmount
       )
       List(
         pokeData=filteredPokemons

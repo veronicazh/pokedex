@@ -1,14 +1,14 @@
 import React from 'react'
 import './index.styl'
 
-export default function Pagination ({filteredPokemonsLength, itemsPerPage, updateFilteredPokemons}) {
+export default function Pagination ({itemsPerPage, updateFilteredPokemons, pagesAmount}) {
 
-  let pagesArrayLength = Math.floor((filteredPokemonsLength + 2) / itemsPerPage)
+  // let pagesArrayLength = Math.ceil((filteredPokemonsLength + 2) / itemsPerPage)
 
-  let pagesArray = new Array(pagesArrayLength)
+  let pagesArray = new Array(pagesAmount)
 
   for (let i = 0; i < pagesArray.length; i++) {
-    pagesArray[i] = i + 1
+    pagesArray[i] = i
   }
 
   console.log(pagesArray, 'pagesArray')
@@ -17,6 +17,6 @@ export default function Pagination ({filteredPokemonsLength, itemsPerPage, updat
     div.root
       div.pagination
         each item in pagesArray
-          span.page(onClick=() => updateFilteredPokemons(item)) #{item}
+          span.page(onClick=() => updateFilteredPokemons(item)) #{item + 1}
   `
 }
