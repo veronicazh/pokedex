@@ -192,6 +192,8 @@ export default function PoxedexMain () {
     return (currentPage * itemsPerPage) + (itemsPerPage - 1)
   }
 
+  useEffect(updateFilteredPokemons,[]);
+
   function updateFilteredPokemons (pageClicked = 0) {
 
     let newArray = pokemons.filter((elem) => {
@@ -246,7 +248,11 @@ export default function PoxedexMain () {
 
     console.log('END', findEnd(pageClicked))
 
-    setPagesAmount(Math.ceil((filteredPokemons.length + 2) / itemsPerPage))
+    let pages = Math.ceil((filteredPokemons.length + 2) / itemsPerPage)
+
+    console.log('PAGES!', pages)
+
+    setPagesAmount(pages)
 
     setFilteredPokemons(slicedArray)
 
