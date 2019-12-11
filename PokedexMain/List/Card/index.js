@@ -39,5 +39,6 @@ export default function Card ({pokemon, types, animated}) {
       div.types
         each item in pokemon.types || []
           span.type(style={backgroundColor: findColor(item.type.name)}) #{item.type.name.toUpperCase()}
+      span.id #{pokemon.id}
   `
 }

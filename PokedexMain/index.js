@@ -122,7 +122,9 @@ export default function PoxedexMain () {
       let pokemonArray = await Promise.all(promiseArray)
       console.log(pokemonArray, 'массив покемонов')
       setPokemons(pokemonArray)
-      setFilteredPokemons(pokemonArray)
+
+      updateFilteredPokemons()
+      // setFilteredPokemons(pokemonArray)
       // setPokemons(apiAnswer.results)
   })
   },[]);
@@ -192,7 +194,7 @@ export default function PoxedexMain () {
     return (currentPage * itemsPerPage) + (itemsPerPage - 1)
   }
 
-  useEffect(updateFilteredPokemons,[]);
+  // useEffect(updateFilteredPokemons,[]);
 
   function updateFilteredPokemons (pageClicked = 0) {
 
