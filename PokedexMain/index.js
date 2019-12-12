@@ -106,7 +106,7 @@ export default function PoxedexMain () {
   let [animated, setAnimated] = useState(false)
   let [itemsPerPage, setItemsPerPage] = useState(20)
   let [currentPage, setCurrentPage] = useState(0)
-  let [pagesAmount, setPagesAmount] = useState(Math.ceil((filteredPokemons.length + 2) / itemsPerPage))
+  let [pagesAmount, setPagesAmount] = useState(0)
 
   console.log(pagesAmount, 'pagesAmount DEFAULT')
 
@@ -122,8 +122,7 @@ export default function PoxedexMain () {
       let pokemonArray = await Promise.all(promiseArray)
       console.log(pokemonArray, 'массив покемонов')
       setPokemons(pokemonArray)
-
-      updateFilteredPokemons()
+      updateFilteredPokemons(undefined, pokemonArray)
       // setFilteredPokemons(pokemonArray)
       // setPokemons(apiAnswer.results)
   })
@@ -186,19 +185,21 @@ export default function PoxedexMain () {
   //   // }
   // }
 
-  function findStart (currentPage) {
-    return currentPage * itemsPerPage
+  function findStart (page) {
+    console.log('page from start', page)
+    return page * itemsPerPage
   }
 
-  function findEnd (currentPage) {
-    return (currentPage * itemsPerPage) + (itemsPerPage - 1)
+  function findEnd (page) {
+    console.log('page from endt', page)
+    return (page * itemsPerPage) + (itemsPerPage - 1)
   }
 
   // useEffect(updateFilteredPokemons,[]);
 
-  function updateFilteredPokemons (pageClicked = 0) {
+  function updateFilteredPokemons (pageClicked = 0, newPokemons = pokemons) {
 
-    let newArray = pokemons.filter((elem) => {
+    let newArray = newPokemons.filter((elem) => {
 
       let nameMatches = false
       if (elem.name.toLowerCase().includes(search.toLowerCase())) {
@@ -244,17 +245,17 @@ export default function PoxedexMain () {
     })
     console.log(pageClicked, 'pageClicked')
 
+    let pages = Math.ceil((newArray.length + 2) / itemsPerPage)
+
+    console.log('PAGES!', pages)
+
+    setPagesAmount(pages)
+
     let slicedArray = newArray.slice(findStart(pageClicked), (findEnd(pageClicked)) + 1)
 
     console.log('START', findStart(pageClicked))
 
     console.log('END', findEnd(pageClicked))
-
-    let pages = Math.ceil((filteredPokemons.length + 2) / itemsPerPage)
-
-    console.log('PAGES!', pages)
-
-    setPagesAmount(pages)
 
     setFilteredPokemons(slicedArray)
 
