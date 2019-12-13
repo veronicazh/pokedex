@@ -285,6 +285,7 @@ export default function PoxedexMain () {
         itemsPerPage=itemsPerPage
         updateFilteredPokemons=updateFilteredPokemons
         pagesAmount=pagesAmount
+        currentPage=currentPage
       )
       List(
         pokeData=filteredPokemons

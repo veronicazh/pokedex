@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.styl'
 
-export default function Pagination ({itemsPerPage, updateFilteredPokemons, pagesAmount}) {
+export default function Pagination ({itemsPerPage, updateFilteredPokemons, pagesAmount, currentPage}) {
 
   // let pagesArrayLength = Math.ceil((filteredPokemonsLength + 2) / itemsPerPage)
 
