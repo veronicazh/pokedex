@@ -34,20 +34,25 @@
     width: auto
 
 .button
-  color: #416BB7
+  color: white
+  text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5)
   background-color: #F8CE46
   border-radius: 5px
   font-family: 'Play', sans-serif
   margin-top: 15px
-  padding: 5px 8px 5px 8px
+  padding: 4px 8px 4px 8px
   font-size: 20px
   box-shadow: 1px 3px 6px -4px #000000
+  border: 1px solid transparent
+  transition: all 0.2s
   +desktop()
     font-size: 26px
     margin-left: 10px
     margin-top: 0px
   &:hover
     cursor: pointer
+    border: 1px solid white
+
 
 .switchContainer
   row()
