@@ -141,6 +141,10 @@ export default function PoxedexMain () {
     console.log(newArray, 'НОВЫЙ МАССИВ')
   }
 
+  function toggleActivePage () {
+    console.log('toggle active page')
+  }
+
   function toggleAnimated () {
     setAnimated(!animated)
   }

@@ -17,6 +17,6 @@ export default function Pagination ({itemsPerPage, updateFilteredPokemons, pages
     div.root
       div.pagination
         each item in pagesArray
-          span.page(onClick=() => updateFilteredPokemons(item)) #{item + 1}
+          span.page(onClick=() => updateFilteredPokemons(item) style={opacity: item === currentPage ? '1' : '0.8'}) #{item + 1}
   `
 }
