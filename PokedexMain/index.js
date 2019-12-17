@@ -249,7 +249,7 @@ export default function PoxedexMain () {
     })
     console.log(pageClicked, 'pageClicked')
 
-    let pages = Math.ceil((newArray.length + 2) / itemsPerPage)
+    let pages = Math.round((newArray.length + 2) / itemsPerPage)
 
     console.log('PAGES!', pages)
 
