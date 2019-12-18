@@ -195,7 +195,7 @@ export default function PoxedexMain () {
   }
 
   function findEnd (page) {
-    console.log('page from endt', page)
+    console.log('page from end', page)
     return (page * itemsPerPage) + (itemsPerPage - 1)
   }
 
@@ -295,6 +295,12 @@ export default function PoxedexMain () {
         pokeData=filteredPokemons
         types=types
         animated=animated
+      )
+      Pagination(
+        itemsPerPage=itemsPerPage
+        updateFilteredPokemons=updateFilteredPokemons
+        pagesAmount=pagesAmount
+        currentPage=currentPage
       )
   `
 }
