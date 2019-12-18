@@ -149,45 +149,11 @@ export default function PoxedexMain () {
     setAnimated(!animated)
   }
 
-  // function dataSearch (event) {
-  //   let value = event.target.value.toLowerCase()
-  //   console.log(value, 'VALUE')
-  //   let newArray = filteredPokemons.filter((elem) => elem.name.includes(value))
-  //   console.log(newArray, 'NEWARRAY')
-  //   setFilteredPokemons(newArray)
-  //   if (value === '') {
-  //     setFilteredPokemons(pokemons)
-  //   }
-  // }
-
-  // function typeFilter (currentItem, array) {
-  //   let isActiveTrueArray = array.filter((elem) => {
-  //     if (elem.isActive) {
-  //       return true
-  //     }
-  //   })
-  //   console.log(isActiveTrueArray, 'arrayACTIVE')
-  //   // if (currentItem.isActive) {
-  //     console.log('FUNCTION WORKS')
-  //     console.log(pokemons, 'POKEMONCHIKI')
-  //     console.log(currentItem.type, 'TYPE')
-  //     // let commonArray = []
-  //     let filteredByTypePokemons = pokemons.filter((elem) => {
-  //       // console.log('ELEM')
-  //       for(let i = 0; i < elem.types.length; i++) {
-  //         console.log('FOR WORKS')
-  //         for(let j = 0; j < isActiveTrueArray.length; j++) {
-  //           console.log(isActiveTrueArray[j].type.toLowerCase(), 'TYPE')
-  //           if (elem.types[i].type.name === isActiveTrueArray[j].type.toLowerCase()) {
-  //             return true
-  //           }
-  //         }
-  //       }
-  //     })
-  //     console.log(filteredByTypePokemons, 'FILTERED')
-  //     setFilteredPokemons(filteredByTypePokemons)
-  //   // }
-  // }
+  function handleNext (page) {
+    console.log('pageBEFORE', page)
+    setCurrentPage(page + 1)
+    console.log('pageAFTER', page)
+  }
 
   function findStart (page) {
     console.log('page from start', page)
@@ -197,6 +163,11 @@ export default function PoxedexMain () {
   function findEnd (page) {
     console.log('page from end', page)
     return (page * itemsPerPage) + (itemsPerPage - 1)
+  }
+
+  function handleItemsPerPage (event) {
+    setItemsPerPage(event.target.value)
+    console.log(itemsPerPage, 'itemsPerPage')
   }
 
   // useEffect(updateFilteredPokemons,[]);
@@ -290,6 +261,8 @@ export default function PoxedexMain () {
         updateFilteredPokemons=updateFilteredPokemons
         pagesAmount=pagesAmount
         currentPage=currentPage
+        handleNext=handleNext
+        handleItemsPerPage=handleItemsPerPage
       )
       List(
         pokeData=filteredPokemons
@@ -301,6 +274,7 @@ export default function PoxedexMain () {
         updateFilteredPokemons=updateFilteredPokemons
         pagesAmount=pagesAmount
         currentPage=currentPage
+        handleNext=handleNext
       )
   `
 }
