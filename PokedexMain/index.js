@@ -108,28 +108,19 @@ export default function PoxedexMain () {
   let [currentPage, setCurrentPage] = useState(0)
   let [pagesAmount, setPagesAmount] = useState(0)
 
-  console.log(pagesAmount, 'pagesAmount DEFAULT')
-
   useEffect(() => {
     fetch('https://pokeapi.co/api/v2/pokemon/?offset=0&limit=807')
     .then(response => response.json())
     .then(async apiAnswer => {
-      console.log(apiAnswer, 'apiAnswer')
       let pokeResults = apiAnswer.results
-      console.log(pokeResults, 'pokeResults')
       let promiseArray = pokeResults.map(async elem => (await fetch(elem.url)).json())
-      console.log(promiseArray, 'promiseArray!')
       let pokemonArray = await Promise.all(promiseArray)
-      console.log(pokemonArray, 'массив покемонов')
       setPokemons(pokemonArray)
       updateFilteredPokemons(undefined, pokemonArray)
-      // setFilteredPokemons(pokemonArray)
-      // setPokemons(apiAnswer.results)
+
   })
   },[]);
 
-  // let [physical, setPhysical] = useState(PHYSICAL_DATA);
-  // let [special, setSpecial] = useState(SPECIAL_DATA);
   let [types, setTypes] = useState(TYPES_DATA)
   let [search, setSearch] = useState('')
 
@@ -138,11 +129,9 @@ export default function PoxedexMain () {
     newArray[index].isActive = !newArray[index].isActive
     setTypes(newArray)
 
-    console.log(newArray, 'НОВЫЙ МАССИВ')
   }
 
   function toggleActivePage () {
-    console.log('toggle active page')
   }
 
   function toggleAnimated () {
@@ -150,22 +139,19 @@ export default function PoxedexMain () {
   }
 
   function handleNext (page) {
-    console.log('pageBEFORE', page)
     setCurrentPage(page + 1)
-    console.log('pageAFTER', page)
   }
 
   function findStart (page) {
-    console.log('page from start', page)
     return page * itemsPerPage
   }
 
   function findEnd (page) {
-    console.log('page from end', page)
     return (page * itemsPerPage) + (itemsPerPage - 1)
   }
 
   function handleItemsPerPage (event) {
+    console.log(event.target.value, 'event target value')
     setItemsPerPage(event.target.value)
     console.log(itemsPerPage, 'itemsPerPage')
   }
@@ -187,25 +173,16 @@ export default function PoxedexMain () {
           return true
         }
       })
-      console.log(isActiveTrueArray, 'activeArray')
       for (let pokemonType of elem.types) {
-        console.log(pokemonType, 'PokemonType')
         for (let selectedType of isActiveTrueArray) {
-          console.log(selectedType, 'selectedType')
           if (pokemonType.type.name === selectedType.type.toLowerCase()) {
             typeMatches = true
           }
         }
       }
 
-      console.log(nameMatches, 'NAME_MATCHES')
-      console.log(typeMatches, 'TYPE_MATCHES')
-
-      console.log(types, 'types')
-
       let hasSelectedType = false
       for (let type of types) {
-        console.log(type, 'type')
         if (type.isActive) {
           hasSelectedType = true
         }
@@ -218,19 +195,12 @@ export default function PoxedexMain () {
       }
 
     })
-    console.log(pageClicked, 'pageClicked')
 
     let pages = Math.round((newArray.length + 2) / itemsPerPage)
-
-    console.log('PAGES!', pages)
 
     setPagesAmount(pages)
 
     let slicedArray = newArray.slice(findStart(pageClicked), (findEnd(pageClicked)) + 1)
-
-    console.log('START', findStart(pageClicked))
-
-    console.log('END', findEnd(pageClicked))
 
     setFilteredPokemons(slicedArray)
 
@@ -238,9 +208,6 @@ export default function PoxedexMain () {
 
 
   }
-  console.log(filteredPokemons, 'FILTEREDFUCKINGPOKEMONS')
-
-  // let filteredPokemonsLength = filteredPokemons.length //длина массива фильтред покемонс
 
   return pug `
     div.root

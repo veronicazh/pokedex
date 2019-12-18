@@ -11,19 +11,23 @@ export default function Pagination ({itemsPerPage, updateFilteredPokemons, pages
     pagesArray[i] = i
   }
 
-  console.log(pagesArray, 'pagesArray')
+  // console.log(pagesArray, 'pagesArray')
 
   return pug`
     div.root
       div.pagination
         each item in pagesArray
-          span.page(onClick=() => updateFilteredPokemons(item) style={opacity: item === currentPage ? '1' : '0.8'}) #{item + 1}
+          span.page(
+            onClick=() => updateFilteredPokemons(item)
+            style={opacity: item === currentPage ? '1' : '0.8', backgroundColor: item === currentPage ? '#F8CE46' : 'white'}
+            key=item
+          ) #{item + 1}
       div.navigation
         span.button PREV
         span.button(onClick=() => handleNext(currentPage)) NEXT
         span items per page
-        select.selectBox(onChange=() => handleItemsPerPage(event))
-          option(selected='selected') 20
+        select.selectBox(onChange=() => handleItemsPerPage(event) defaultValue='20')
+          option 20
           option 30
           option 40
   `
