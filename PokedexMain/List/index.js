@@ -2,8 +2,7 @@ import React from 'react'
 import './index.styl'
 import Card from './Card'
 
-export default React.memo(function List ({pokeData, types, animated}) {
-
+export default React.memo(function List ({ pokeData, types, animated }) {
   return pug `
     div.root
       div.container

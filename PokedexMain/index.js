@@ -128,10 +128,6 @@ export default function PoxedexMain () {
     let newArray = [...types];
     newArray[index].isActive = !newArray[index].isActive
     setTypes(newArray)
-
-  }
-
-  function toggleActivePage () {
   }
 
   function toggleAnimated () {
@@ -139,7 +135,10 @@ export default function PoxedexMain () {
   }
 
   function handleNext (page) {
+    console.log(page, 'page before')
     setCurrentPage(page + 1)
+    updateFilteredPokemons(page, undefined)
+    console.log(page, 'page after')
   }
 
   function findStart (page) {
@@ -155,8 +154,6 @@ export default function PoxedexMain () {
     setItemsPerPage(event.target.value)
     console.log(itemsPerPage, 'itemsPerPage')
   }
-
-  // useEffect(updateFilteredPokemons,[]);
 
   function updateFilteredPokemons (pageClicked = 0, newPokemons = pokemons) {
 
@@ -193,7 +190,6 @@ export default function PoxedexMain () {
       } else {
         return false
       }
-
     })
 
     let pages = Math.round((newArray.length + 2) / itemsPerPage)
@@ -205,8 +201,6 @@ export default function PoxedexMain () {
     setFilteredPokemons(slicedArray)
 
     setCurrentPage(pageClicked)
-
-
   }
 
   return pug `

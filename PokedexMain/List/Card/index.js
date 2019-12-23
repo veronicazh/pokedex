@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react'
 import './index.styl'
 
-export default function Card ({pokemon, types, animated}) {
+export default function Card ({ pokemon, types, animated }) {
 
-  function findColor(typeName) {
-
+  function findColor (typeName) {
     for(let i = 0; i <= (pokemon.types || []).length - 1; i++ ) {
       for (let j = 0; j <= types.length - 1; j++) {
         if (typeName === types[j].type.toLowerCase()) {
@@ -17,7 +16,10 @@ export default function Card ({pokemon, types, animated}) {
     div.root
       div.cardBody
         span.name #{pokemon.name.toUpperCase()}
-        img.image(referrerPolicy='no-referrer' src=animated ? 'https://randompokemon.com/sprites/normal/' + pokemon.id +'.gif' : 'https://img.pokemondb.net/artwork/' + pokemon.name + '.jpg')
+        img.image(
+          referrerPolicy='no-referrer'
+          src=animated ? 'https://randompokemon.com/sprites/normal/' + pokemon.id +'.gif' : 'https://img.pokemondb.net/artwork/' + pokemon.name + '.jpg'
+        )
         div.pokemonInfo
           span.item ● Height: #{pokemon.height}
           span.item ● Weight: #{pokemon.weight}

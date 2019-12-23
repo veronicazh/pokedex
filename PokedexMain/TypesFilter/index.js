@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.styl'
 
-export default function TypesFilter ({types, toggleActive, typeFilter}) {
+export default function TypesFilter ({ types, toggleActive }) {
   return pug `
     div.root
       div.title
