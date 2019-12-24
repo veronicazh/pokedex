@@ -104,7 +104,7 @@ export default function PoxedexMain () {
   let [pokemons, setPokemons] = useState([])
   let [filteredPokemons, setFilteredPokemons] = useState(pokemons)
   let [animated, setAnimated] = useState(false)
-  let [itemsPerPage, setItemsPerPage] = useState(20)
+  let [itemsPerPage, setItemsPerPage] = useState(40)
   let [currentPage, setCurrentPage] = useState(0)
   let [pagesAmount, setPagesAmount] = useState(0)
 
@@ -134,28 +134,35 @@ export default function PoxedexMain () {
     setAnimated(!animated)
   }
 
-  function handleNext (page) {
-    console.log(page, 'page before')
-    setCurrentPage(page + 1)
-    updateFilteredPokemons(page, undefined)
-    console.log(page, 'page after')
+  function handleNext (currentPage) {
+    let newCurrentPage = currentPage + 1
+    setCurrentPage(newCurrentPage)
+    updateFilteredPokemons(newCurrentPage, undefined)
   }
 
-  function findStart (page) {
+  function handlePrev (currentPage) {
+    let newCurrentPage = currentPage - 1
+    setCurrentPage(newCurrentPage)
+    updateFilteredPokemons(newCurrentPage, undefined)
+  }
+
+
+  function findStart (page, itemsPerPage) {
     return page * itemsPerPage
   }
 
-  function findEnd (page) {
+  function findEnd (page, itemsPerPage) {
     return (page * itemsPerPage) + (itemsPerPage - 1)
   }
 
-  function handleItemsPerPage (event) {
-    console.log(event.target.value, 'event target value')
-    setItemsPerPage(event.target.value)
+  function handleItemsPerPage (event, pokemonsData = pokemons) {
+    let newItemsPerPage = event.target.value
+    setItemsPerPage(newItemsPerPage)
+    updateFilteredPokemons(currentPage, undefined, newItemsPerPage)
     console.log(itemsPerPage, 'itemsPerPage')
   }
 
-  function updateFilteredPokemons (pageClicked = 0, newPokemons = pokemons) {
+  function updateFilteredPokemons (pageClicked = 0, newPokemons = pokemons, newItemsPerPage = itemsPerPage) {
 
     let newArray = newPokemons.filter((elem) => {
 
@@ -192,11 +199,11 @@ export default function PoxedexMain () {
       }
     })
 
-    let pages = Math.round((newArray.length + 2) / itemsPerPage)
+    let pages = Math.round((newArray.length + 2) / newItemsPerPage)
 
     setPagesAmount(pages)
 
-    let slicedArray = newArray.slice(findStart(pageClicked), (findEnd(pageClicked)) + 1)
+    let slicedArray = newArray.slice(findStart(pageClicked, newItemsPerPage), (findEnd(pageClicked, newItemsPerPage)) + 1)
 
     setFilteredPokemons(slicedArray)
 
@@ -223,7 +230,9 @@ export default function PoxedexMain () {
         pagesAmount=pagesAmount
         currentPage=currentPage
         handleNext=handleNext
+        handlePrev=handlePrev
         handleItemsPerPage=handleItemsPerPage
+        pokeData=filteredPokemons
       )
       List(
         pokeData=filteredPokemons
@@ -236,6 +245,9 @@ export default function PoxedexMain () {
         pagesAmount=pagesAmount
         currentPage=currentPage
         handleNext=handleNext
+        handlePrev=handlePrev
+        handleItemsPerPage=handleItemsPerPage
+        pokeData=filteredPokemons
       )
   `
 }

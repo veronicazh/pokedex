@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.styl'
 
-export default function Pagination ({ itemsPerPage, updateFilteredPokemons, pagesAmount, currentPage, handleNext, handleItemsPerPage }) {
+export default function Pagination ({ itemsPerPage, updateFilteredPokemons, pagesAmount, currentPage, handleNext, handlePrev, handleItemsPerPage, pokeData }) {
 
   let pagesArray = new Array(pagesAmount)
 
@@ -19,12 +19,17 @@ export default function Pagination ({ itemsPerPage, updateFilteredPokemons, page
             key=item
           ) #{item + 1}
       div.navigation
-        span.button PREV
-        span.button(onClick=() => handleNext(currentPage)) NEXT
+        if (currentPage === 0)
+          span.button(onClick=() => handleNext(currentPage)) NEXT
+        else if (currentPage === pagesAmount - 1)
+          span.button(onClick=() => handlePrev(currentPage)) PREV
+        else
+          span.button(onClick=() => handlePrev(currentPage)) PREV
+          span.button(onClick=() => handleNext(currentPage)) NEXT
         span.text Per page
         select.selectBox(
-          onChange=() => handleItemsPerPage(event)
-          defaultValue='20'
+          onChange=() => handleItemsPerPage(event, pokeData)
+          defaultValue='40'
         )
           option 20
           option 30
