@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.styl'
 
-export default function SearchBar ({ updateFilteredPokemons, search, setSearch, animated, toggleAnimated }) {
+export default function SearchBar ({ updateFilteredPokemons, search, setSearch, animated, toggleAnimated, getRandomPokemon }) {
 
   function onInputChange (event) {
     let newValue = event.target.value
@@ -28,6 +28,7 @@ export default function SearchBar ({ updateFilteredPokemons, search, setSearch, 
             value=animated
           )
           span.slider.round
+        span.random(onClick=getRandomPokemon) Get random!
 
   `
 }

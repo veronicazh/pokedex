@@ -117,8 +117,7 @@ export default function PoxedexMain () {
       let pokemonArray = await Promise.all(promiseArray)
       setPokemons(pokemonArray)
       updateFilteredPokemons(undefined, pokemonArray)
-
-  })
+    })
   },[]);
 
   let [types, setTypes] = useState(TYPES_DATA)
@@ -146,6 +145,19 @@ export default function PoxedexMain () {
     updateFilteredPokemons(newCurrentPage, undefined)
   }
 
+  function getRandomPokemon () {
+    let randomIndex = Math.round(Math.random() * (806 - (0)) + (0))
+    // let randomPokemon = pokemons[randomIndex]
+    console.log(randomIndex, 'randomIndex')
+    let newArray = pokemons.filter((item) => {
+      if (item.id === (randomIndex + 1)) {
+        return true
+      }
+    })
+    updateFilteredPokemons(undefined, newArray, undefined)
+    console.log(newArray, 'newArray')
+    // updateFilteredPokemons(undefined, randomPokemon, undefined)
+  }
 
   function findStart (page, itemsPerPage) {
     return page * itemsPerPage
@@ -163,6 +175,8 @@ export default function PoxedexMain () {
   }
 
   function updateFilteredPokemons (pageClicked = 0, newPokemons = pokemons, newItemsPerPage = itemsPerPage) {
+
+    console.log(newPokemons)
 
     let newArray = newPokemons.filter((elem) => {
 
@@ -223,6 +237,7 @@ export default function PoxedexMain () {
         setSearch=setSearch
         animated=animated
         toggleAnimated=toggleAnimated
+        getRandomPokemon=getRandomPokemon
       )
       Pagination(
         itemsPerPage=itemsPerPage
