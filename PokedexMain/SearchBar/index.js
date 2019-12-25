@@ -10,7 +10,10 @@ export default function SearchBar ({ updateFilteredPokemons, search, setSearch, 
 
   return pug `
     div.root
-      div.container
+      form.container(onSubmit=(event) => {
+        updateFilteredPokemons()
+        event.preventDefault()
+      })
         input.search(
           value=search
           placeholder='Name...'
@@ -18,7 +21,7 @@ export default function SearchBar ({ updateFilteredPokemons, search, setSearch, 
           onBlur=(e) => e.target.placeholder = 'Name...'
           onChange=onInputChange
         )
-        span.button(onClick=() => updateFilteredPokemons()) Search
+        span.button(onClick=updateFilteredPokemons) Search
       div.switchContainer
         span.animated Animate!
         label.switch
