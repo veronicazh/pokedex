@@ -154,7 +154,7 @@ export default function PoxedexMain () {
         return true
       }
     })
-    updateFilteredPokemons(undefined, newArray, undefined)
+    setFilteredPokemons(newArray)
     console.log(newArray, 'newArray')
     console.log(filteredPokemons, 'filteredPokemons')
     // updateFilteredPokemons(undefined, randomPokemon, undefined)
