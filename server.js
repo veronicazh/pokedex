@@ -17,7 +17,10 @@ startupjsServer({ getHead }, ee => {
   })
 })
 
-const getHead = appName => `
-  <title>HelloWorld</title>
-  <!-- Put vendor JS and CSS here -->
-`
+function getHead (appName) {
+  return `
+    <title>HelloWorld</title>
+    <meta name='referrer' content='no-referrer'>
+    <!-- Put vendor JS and CSS here -->
+  `
+}
