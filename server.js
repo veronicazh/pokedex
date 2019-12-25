@@ -19,7 +19,7 @@ startupjsServer({ getHead }, ee => {
 
 function getHead (appName) {
   return `
-    <title>HelloWorld</title>
+    <title>Pokedex</title>
     <meta name='referrer' content='no-referrer'>
     <!-- Put vendor JS and CSS here -->
   `
