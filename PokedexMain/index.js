@@ -147,8 +147,6 @@ export default function PoxedexMain () {
 
   function getRandomPokemon () {
     let randomIndex = Math.round(Math.random() * (806 - (0)) + (0))
-    // let randomPokemon = pokemons[randomIndex]
-    console.log(randomIndex, 'randomIndex')
     let newArray = pokemons.filter((item) => {
       if (item.id === (randomIndex + 1)) {
         return true
@@ -157,7 +155,6 @@ export default function PoxedexMain () {
     setFilteredPokemons(newArray)
     console.log(newArray, 'newArray')
     console.log(filteredPokemons, 'filteredPokemons')
-    // updateFilteredPokemons(undefined, randomPokemon, undefined)
   }
 
   function findStart (page, itemsPerPage) {
