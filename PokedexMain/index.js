@@ -248,6 +248,7 @@ export default function PoxedexMain () {
           handleItemsPerPage=handleItemsPerPage
           pokeData=filteredPokemons
         )
+      img(src='/img/spinnerSvg.svg' styleName=pokemons.length ? 'spinner' : '')
       List(
         pokeData=filteredPokemons
         types=types
