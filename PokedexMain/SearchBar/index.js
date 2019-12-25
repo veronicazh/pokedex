@@ -28,7 +28,7 @@ export default function SearchBar ({ updateFilteredPokemons, search, setSearch, 
             value=animated
           )
           span.slider.round
-        span.random(onClick=getRandomPokemon) Get random!
+        span.random(onClick=() => getRandomPokemon()) Get random!
 
   `
 }

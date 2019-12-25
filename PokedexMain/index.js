@@ -156,6 +156,7 @@ export default function PoxedexMain () {
     })
     updateFilteredPokemons(undefined, newArray, undefined)
     console.log(newArray, 'newArray')
+    console.log(filteredPokemons, 'filteredPokemons')
     // updateFilteredPokemons(undefined, randomPokemon, undefined)
   }
 
@@ -239,30 +240,32 @@ export default function PoxedexMain () {
         toggleAnimated=toggleAnimated
         getRandomPokemon=getRandomPokemon
       )
-      Pagination(
-        itemsPerPage=itemsPerPage
-        updateFilteredPokemons=updateFilteredPokemons
-        pagesAmount=pagesAmount
-        currentPage=currentPage
-        handleNext=handleNext
-        handlePrev=handlePrev
-        handleItemsPerPage=handleItemsPerPage
-        pokeData=filteredPokemons
-      )
+      if (filteredPokemons.length != 1)
+        Pagination(
+          itemsPerPage=itemsPerPage
+          updateFilteredPokemons=updateFilteredPokemons
+          pagesAmount=pagesAmount
+          currentPage=currentPage
+          handleNext=handleNext
+          handlePrev=handlePrev
+          handleItemsPerPage=handleItemsPerPage
+          pokeData=filteredPokemons
+        )
       List(
         pokeData=filteredPokemons
         types=types
         animated=animated
       )
-      Pagination(
-        itemsPerPage=itemsPerPage
-        updateFilteredPokemons=updateFilteredPokemons
-        pagesAmount=pagesAmount
-        currentPage=currentPage
-        handleNext=handleNext
-        handlePrev=handlePrev
-        handleItemsPerPage=handleItemsPerPage
-        pokeData=filteredPokemons
-      )
+      if (filteredPokemons.length !=1)
+        Pagination(
+          itemsPerPage=itemsPerPage
+          updateFilteredPokemons=updateFilteredPokemons
+          pagesAmount=pagesAmount
+          currentPage=currentPage
+          handleNext=handleNext
+          handlePrev=handlePrev
+          handleItemsPerPage=handleItemsPerPage
+          pokeData=filteredPokemons
+        )
   `
 }

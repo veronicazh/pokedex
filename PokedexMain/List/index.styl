@@ -1,24 +1,10 @@
 .root
   margin-top: 25px
-
+  +desktop()
+    margin-top: 30px
 
 .container
-  +desktop()
+  +tablet()
     row()
     flex-wrap: wrap
     justify-content: space-around
-
-// .pagination
-//   row()
-//   justify-content: center
-
-// .pageButton
-//   align-self: center
-//   background-color: transparent
-//   color: white
-//   border: 1px solid white
-//   font-family: 'Play', sans-serif
-//   border-radius: 5px
-//   padding: 5px 7px 5px 7px
-//   &:hover
-//     cursor: pointer

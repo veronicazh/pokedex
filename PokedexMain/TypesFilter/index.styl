@@ -1,8 +1,9 @@
 .root
   margin-top: 20px
+  +tablet()
+    align-items: center
   +desktop()
     margin-top: 30px
-    align-items: center
 
 .title
   font-family: 'Play', sans-serif
@@ -25,8 +26,9 @@
   flex-wrap: wrap
   row()
   margin-top: 10px
-  +desktop()
+  +tablet()
     justify-content: center
+  +desktop()
     width: 716px
     margin-top: 20px
 

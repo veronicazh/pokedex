@@ -32,7 +32,6 @@ export default function Pagination ({ itemsPerPage, updateFilteredPokemons, page
           defaultValue='40'
         )
           option 20
-          option 30
           option 40
   `
 }

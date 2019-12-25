@@ -1,14 +1,15 @@
 .root
   align-items: flex-start
   margin-top: 15px
+  +tablet()
+    align-items: center
   +desktop()
     margin-top: 25px
-    align-items: center
 
 
 .container
   align-items: flex-start
-  +desktop()
+  +tablet()
     row()
 
 .search
@@ -45,10 +46,10 @@
   box-shadow: 1px 3px 6px -4px #000000
   border: 1px solid transparent
   transition: all 0.2s
-  +desktop()
+  +tablet()
+    margin-top: 0px
     font-size: 26px
     margin-left: 10px
-    margin-top: 0px
   &:hover
     cursor: pointer
     border: 1px solid white
