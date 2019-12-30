@@ -21,7 +21,8 @@ export default function SearchBar ({ updateFilteredPokemons, search, setSearch, 
           onBlur=(e) => e.target.placeholder = 'Name...'
           onChange=onInputChange
         )
-        span.button(onClick=updateFilteredPokemons) Search
+        span.button(onClick=() => updateFilteredPokemons()) Search
+      // тут попробовать заменить на вызов функции
       div.switchContainer
         span.animated Animate!
         label.switch
